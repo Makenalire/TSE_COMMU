@@ -28,7 +28,7 @@ export default function Petition() {
                         placeholder='subject'
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
-                        style={styles.username}
+                        style={styles.subject}
                     />
                 </View>
                 <SelectDropdown
@@ -105,10 +105,32 @@ export default function Petition() {
                         style={styles.textInputDescription}
                     />
                 </View>
-                <TouchableOpacity style={{alignSelf: 'center'}}
+                <TouchableOpacity style={{alignSelf: 'flex-end', marginRight: 10}}
                     onPress={() => navigation.navigate('Problem')} >
                     <Image source={require('../../assets/Sent.png')} style={styles.btnSent} />
                 </TouchableOpacity>
+                <View style={styles.bottomView}>
+                    <TouchableOpacity
+                    onPress={() => navigation.navigate('Room')} >
+                    <Image source={require('../../assets/Room.png')} style={styles.btnRoom} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{borderRadius: 10, borderColor: 'black'}}
+                    onPress={() => navigation.navigate('Petition')} >
+                    <Image source={require('../../assets/Petition.png')} style={styles.btnPetition} />
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                    onPress={() => navigation.navigate('Calendar')} >
+                    <Image source={require('../../assets/Calendar.png')} style={styles.btnCalendar} />
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                    onPress={() => navigation.navigate('Notification')} >
+                    <Image source={require('../../assets/Notification.png')} style={styles.btnNoti} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={() => navigation.navigate('Problem')} >
+                    <Image source={require('../../assets/Problem.png')} style={styles.btnProblem} />
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
         </View>
     )
@@ -129,21 +151,17 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     textInput: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         flexDirection: 'row',
-        fontSize: 15,
-        color: '#DF2525',
-        height: 35,
-        marginLeft: 50,
-        marginRight: 50,
         marginBottom: 12,
         marginTop: 20,
         borderColor: '#DF2525',
         borderWidth: 2,
         borderRadius: 10,
-        height: 40
+        height: 40,
+        width: '90%'
     },
-    username: {
+    subject: {
         fontSize: 15,
         width:'80%',
         left: -2
@@ -153,9 +171,8 @@ const styles = StyleSheet.create({
         left: 4
     },
     dropdown1BtnStyle: {
-        width: '72%',
-        height: 35,
-        backgroundColor: '#FFFFFF',
+        width: '90%',
+        height: 40,
         borderRadius: 10,
         borderWidth: 2,
         borderColor: '#DF2525',
@@ -164,7 +181,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     dropdown1BtnTxtStyle: {color: '#C1C1C1', textAlign: 'left'},
-    dropdown1DropdownStyle: {backgroundColor: '#EFEFEF'},
+    dropdown1DropdownStyle: {backgroundColor: '#EFEFEF', borderRadius: 10},
     dropdown1RowStyle: {backgroundColor: '#EFEFEF', borderBottomColor: '#B3B3B3'},
     dropdown1RowTxtStyle: {color: '#444', textAlign: 'left'},
     dropdown1SelectedRowStyle: {backgroundColor: '#B3B3B3'},
@@ -172,28 +189,28 @@ const styles = StyleSheet.create({
         backgroundColor: '#EFEFEF',
         borderRadius: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#444',
+        borderBottomColor: '#444'
     },
     Description: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         flexDirection: 'row',
-        fontSize: 15,
-        height: 120,
-        marginLeft: 50,
-        marginRight: 50,
         marginBottom: 12,
+        marginTop: 20,
+        borderColor: '#DF2525',
+        borderWidth: 2,
         borderRadius: 10,
-        backgroundColor: '#444',
-        marginTop: 20
+        height: 100,
+        width: '90%'
     },
     textInputDescription: {
         alignSelf: 'flex-start',
         flexDirection: 'row',
         fontSize: 15,
-        color: 'white',
+        color: '#444',
         fontWeight: 'bold',
         width: '90%',
         left: -2,
+        top: 5
     },
     iconTopLeft: {
         top: 4,
@@ -201,6 +218,47 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start'
     },
     btnSent: {
-        marginTop: 10
-    }
+
+    },
+    bottomView: {
+        flex: 1,
+        width: '100%',
+        height: 43,
+        backgroundColor: '#FFBD59',
+        position: 'absolute',
+        bottom: 0,
+        justifyContent: 'space-evenly',
+        flexDirection: 'row',
+    },
+    btnRoom: {
+    height: 26.04,
+    width: 25,
+    alignSelf: 'center',
+    top: 7
+
+    },
+    btnPetition: {
+    height: 26.48,
+    width: 24,
+    alignSelf: 'center',
+    top: 7
+    },
+    btnCalendar: {
+    height: 54,
+    width: 54,
+    alignSelf: 'center',
+    bottom: 20
+    },
+    btnNoti: {
+    height: 26,
+    width: 24,
+    alignSelf: 'center',
+    top: 7
+    },
+    btnProblem: {
+    height: 25,
+    width: 28,
+    alignSelf: 'center',
+    top: 7
+    },
 })

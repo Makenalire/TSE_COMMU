@@ -97,19 +97,15 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     textInput: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         flexDirection: 'row',
-        fontSize: 15,
-        color: '#DF2525',
-        height: 35,
-        marginLeft: 50,
-        marginRight: 50,
         marginBottom: 12,
         marginTop: 20,
         borderColor: '#DF2525',
         borderWidth: 2,
         borderRadius: 10,
-        height: 40
+        height: 45,
+        width: '90%'
     },
     username: {
         fontSize: 15,
