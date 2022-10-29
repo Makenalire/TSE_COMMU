@@ -6,6 +6,7 @@ import Register from './screens/Register';
 import Home from './screens/Home';
 import Room from './screens/Bottom/Room';
 import Petition from './screens/Bottom/Petition';
+import Petitionstaff from './screens/Bottom/Petitionstaff'
 import Calendar from './screens/Bottom/Calendar';
 import Notification from './screens/Bottom/Notification';
 import Problem from './screens/Bottom/Problem';
@@ -46,6 +47,11 @@ function PageStack() {
       <Stack.Screen 
         name="Room" 
         component={Room}
+        options={{headerShown:true, title: 'TSE COMMU', headerTitleAlign: 'center'}} 
+      />
+      <Stack.Screen 
+        name="PetitionStaff" 
+        component={Petitionstaff}
         options={{headerShown:true, title: 'TSE COMMU', headerTitleAlign: 'center'}} 
       />
       <Stack.Screen 
