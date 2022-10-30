@@ -144,7 +144,7 @@ const Register = () => {
                     }}
                     />
                 </View>
-                <TouchableOpacity onPress = {() => navigation.navigate('Home', {}) } style={styles.button}>
+                <TouchableOpacity onPress = {() => navigation.navigate('Root', {}) } style={styles.button}>
                     <Text style={styles.btnRegister}>
                         SIGN UP
                     </Text>
@@ -263,13 +263,12 @@ const styles = StyleSheet.create({
     dropdown1BtnStyle: {
         width: '100%',
         height: 35,
-        backgroundColor: '#DF2525',
         borderRadius: 10,
         borderWidth: 2,
         borderColor: '#DF2525',
     },
     dropdown1BtnTxtStyle: {color: '#C1C1C1', textAlign: 'left'},
-    dropdown1DropdownStyle: {backgroundColor: '#EFEFEF'},
+    dropdown1DropdownStyle: {backgroundColor: '#EFEFEF', borderRadius: 10},
     dropdown1RowStyle: {backgroundColor: '#EFEFEF', borderBottomColor: '#B3B3B3'},
     dropdown1RowTxtStyle: {color: '#444', textAlign: 'left'},
     dropdown1SelectedRowStyle: {backgroundColor: '#B3B3B3'},
