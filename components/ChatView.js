@@ -53,8 +53,8 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
     });
     msgIndex.current = msgIndex.current + 1;
     const newMsgData = {
-      id: msgIndex.current,
       msg: message,
+      id: msgIndex.current,
       createdAt: new Date(),
       sender: reader,
     };
@@ -75,7 +75,6 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
         msgdata: [
           {
             createdAt: firebaseService.serverTime(),
-            id: msgIndex.current,
             msg: message,
             sender: creator.current,
           },
@@ -86,15 +85,10 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
         firebaseService.db,
         "chats",
       );
-      const chatsCountRef = firebaseService.docData(chatsRef, "ChatsCount");
       await firebaseService.setdbDoc(firebaseService.docData(chatsRef, creator.current), {
-        id: (await firebaseService.getdbDoc(chatsCountRef)).data().count + 1,
         recentmsg: message,
         uid: creator.current,
         username: "Nahida"
-      });
-      firebaseService.updatedbDoc(chatsCountRef, {
-        count: increment(1)
       });
     } else {
       const chatsRef = firebaseService.docCollection(
@@ -113,7 +107,6 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
       await firebaseService.updatedbDoc(msgRef, {
         msgdata: arrayUnion({
           createdAt: firebaseService.serverTime(),
-          id: msgIndex.current,
           msg: message,
           sender: reader,
         }),

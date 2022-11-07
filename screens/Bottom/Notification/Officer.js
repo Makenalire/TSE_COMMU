@@ -23,7 +23,7 @@ export default function Officer() {
   const allChats = useRef();
   const chatMessages = useRef();
   const msgCreator = useRef();
-  const user = "5555";
+  const user = "Kusanali";
 
   useEffect(() => {
     canViewAllChat()
@@ -64,9 +64,7 @@ export default function Officer() {
 
     const msgDB = msgQuerySnapshot.docs.map((doc) => doc.get("msgdata"))[0];
     msgCreator.current = msgQuerySnapshot.docs.map((doc) => doc.get("uid"))[0];
-    chatMessages.current = typeof msgDB === "undefined" ? chatMessages.current : chatMessages.current.concat(msgDB);
-    console.log(chatMessages.current);
-    console.log(msgCreator.current);
+    chatMessages.current = typeof msgDB === "undefined" ? chatMessages.current : chatMessages.current.concat(msgDB.map((obj, index) => ({ ...obj, id: index + 1 })));
     setViewAllChat(false);
   };
 
@@ -81,7 +79,8 @@ export default function Officer() {
       const chatQuerySnapshot = await firebaseService.getdbDocs(
         firebaseService.docCollection(firebaseService.db, "chats")
       );
-      allChats.current = chatQuerySnapshot.docs.map((doc) => doc.data());
+      const allChatDB = chatQuerySnapshot.docs.map((doc) => doc.data());
+      allChats.current = allChatDB.map((obj, index) => ({ ...obj, id: index}));
       return true;
     } else if (
       staffQuerySnapshot.empty &&
