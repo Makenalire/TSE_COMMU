@@ -30,7 +30,7 @@ import Calendar from '../screens/Students/Calendar';
 import Notification from '../screens/Students/Notifications';
 import Problem from '../screens/Students/Problems';
 import Covid from '../screens/Students/Notifications/Covid';
-import Officer from '../screens/Students/Notifications/Officer';
+import Officer from '../screens/Bottom/Notification/Officer';
 import { Button } from 'react-native';
 
 function StudentStack() {
@@ -125,7 +125,7 @@ function StudentStack() {
 import PetitionStaff from '../screens/Staff/Petitionstaff';
 import NotificationStaff from '../screens/Staff/NotificationsStaff';
 import CovidStaff from '../screens/Staff/NotificationsStaff/CovidStaff';
-import OfficerStaff from '../screens/Staff/NotificationsStaff/OfficerStaff';
+import OfficerStaff from '../screens/Bottom/Notification/Officer';
 import ProblemStaff from '../screens/Staff/ProblemStaff';
 
 function StaffStack() {
