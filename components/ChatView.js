@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   FlatList,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -17,7 +18,8 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
     return (
       <View>
         <Text style={{ textAlign: "center" }}>
-          Loading takes too long? Please check your internet connection and try again.
+          Loading takes too long? Please check your internet connection and try
+          again.
         </Text>
       </View>
     );
@@ -33,6 +35,12 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
     newDay.current = new Date();
   }, [message]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      newRef.current.scrollToEnd({animated: false});
+    });
+  }, []);
+
   const isNewDay = (date) => {
     if (dateFormat(date) != dateFormat(newDay.current)) {
       newDay.current = date;
@@ -47,10 +55,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
       return;
     }
 
-    newRef.current.scrollToIndex({
-      animated: true,
-      index: msgIndex.current - 1,
-    });
+    newRef.current.scrollToEnd();
     msgIndex.current = msgIndex.current + 1;
     const newMsgData = {
       msg: message,
@@ -83,21 +88,27 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
       });
       const chatsRef = firebaseService.docCollection(
         firebaseService.db,
-        "chats",
+        "chats"
       );
-      await firebaseService.setdbDoc(firebaseService.docData(chatsRef, creator.current), {
-        recentmsg: message,
-        uid: creator.current,
-        username: "Nahida"
-      });
+      await firebaseService.setdbDoc(
+        firebaseService.docData(chatsRef, creator.current),
+        {
+          recentmsg: message,
+          uid: creator.current,
+          username: "Nahida",
+        }
+      );
     } else {
       const chatsRef = firebaseService.docCollection(
         firebaseService.db,
-        "chats",
+        "chats"
       );
-      await firebaseService.updatedbDoc(firebaseService.docData(chatsRef, msgCreator), {
-        recentmsg: message
-      });
+      await firebaseService.updatedbDoc(
+        firebaseService.docData(chatsRef, msgCreator),
+        {
+          recentmsg: message,
+        }
+      );
 
       const msgRef = firebaseService.docData(
         firebaseService.db,
@@ -111,43 +122,34 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
           sender: reader,
         }),
       });
-      
     }
   };
 
   const handleSend = () => {
     addMsgToView();
     addMsgToDB();
-    // const msgRef = firebaseService.docCollection(firebaseService.db, "messages");
-    // await firebaseService.setdbDoc(firebaseService.docData(staffsRef, id), {
-    //   name: "Nahida",
-    //   uid: "2710",
-    // });
-    // const sender = firebaseService.auth.currentUser;
-    // const res = await firebaseService.getdbDoc(
-    //   firebaseService.docData(firebaseService.db, "chats", sender.uid)
-    // );
-    // if (!res.exists()) {
-    //   await firebaseService.setdbDoc(
-    //     firebaseService.docData(firebaseService.db, "chats", sender.uid),
-    //     { messages: [] }
-    //   );
-    //   await firebaseService.updatedbDoc(
-    //     firebaseService.docData(firebaseService.db, "userChats", sender.uid),
-    //     {
-    //       [sender.uid + ".userInfo"]: {
-    //         uid: sender.uid,
-    //         displayName: sender.displayName,
-    //       },
-    //       [sender.uid + ".createdAt"]: firebaseService.serverTime,
-    //     }
-    //   );
-    // }
   };
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <ScrollView
+        ref={(ref) => {
+          newRef.current = ref;
+        }}
+      >
+        {msgList.map((item) => (
+          <ChatBubble
+            key={item.id}
+            msg={item.msg}
+            time={timeFormat(item.createdAt)}
+            date={dateFormat(item.createdAt)}
+            isSender={item.sender === reader}
+            isNewDay={isNewDay(item.createdAt)}
+          />
+        ))}
+      </ScrollView>
+
+      {/* <FlatList
         ref={(ref) => {
           newRef.current = ref;
         }}
@@ -162,7 +164,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
             isNewDay={isNewDay(item.createdAt)}
           ></ChatBubble>
         )}
-      />
+      /> */}
       <View style={styles.sendBoxView}>
         <TextInput
           placeholder="message"
