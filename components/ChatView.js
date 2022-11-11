@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  FlatList,
   Image,
   ScrollView,
   StyleSheet,
@@ -10,8 +9,8 @@ import {
   View,
 } from "react-native";
 import ChatBubble from "./ChatBubble";
-import { firebaseService } from "../services/chatDB";
-import { arrayUnion, increment } from "firebase/firestore";
+import { firebaseService } from "../services/ChatDB";
+import { arrayUnion } from "firebase/firestore";
 
 const ChatView = ({ msgData, reader, msgCreator }) => {
   if (typeof msgData === "undefined") {
@@ -104,7 +103,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
         "chats"
       );
       await firebaseService.updatedbDoc(
-        firebaseService.docData(chatsRef, msgCreator),
+        firebaseService.docData(chatsRef, creator.current),
         {
           recentmsg: message,
         }
@@ -113,7 +112,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
       const msgRef = firebaseService.docData(
         firebaseService.db,
         "messages",
-        msgCreator
+        creator.current
       );
       await firebaseService.updatedbDoc(msgRef, {
         msgdata: arrayUnion({

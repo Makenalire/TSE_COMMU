@@ -6,9 +6,10 @@ import {
   Text,
   StyleSheet,
   FlatList,
+  Alert,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { firebaseService } from "../../../services/chatDB";
+import { firebaseService } from "../../../services/ChatDB";
 import ChatList from "../../../components/ChatList";
 import ChatView from "../../../components/ChatView";
 
@@ -35,6 +36,38 @@ export default function Officer() {
       return () => {};
     }, [])
   );
+
+  const createTwoButtonAlert = (name, uid) =>
+    Alert.alert(
+      "Delete Confirmation",
+      `Chat history will be deleted. This will also affect on ${name}'s chat too.`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            await firebaseService.deletedbDoc(
+              firebaseService.docData(firebaseService.db, "chats", uid)
+            );
+            await firebaseService.deletedbDoc(
+              firebaseService.docData(firebaseService.db, "messages", uid)
+            );
+            setLoading(true);
+            getAllChat()
+              .then(() => {
+                setLoading(false);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          },
+        },
+      ]
+    );
 
   const chatView = async (uid) => {
     const msgRef = firebaseService.docCollection(
@@ -87,6 +120,9 @@ export default function Officer() {
                     detail={item.recentmsg}
                     onClickFunction={() => {
                       chatView(item.uid);
+                    }}
+                    onDelFunction={() => {
+                      createTwoButtonAlert(item.username, item.uid);
                     }}
                   ></ChatList>
                 )}

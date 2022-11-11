@@ -19,6 +19,7 @@ import {
   DocumentData,
   Timestamp,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
@@ -39,15 +40,13 @@ const firebaseConfig = {
 // Initialize Firebase
 let app;
 if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig);
+  app = initializeApp(firebaseConfig, "chatDB");
 } else {
   app = getApp();
 }
 
 export const firebaseService = {
   db: getFirestore(app),
-  auth: getAuth(),
-  wServerTime: serverTimestamp(),
   serverTime: () => {
     return Timestamp.now();
   },
@@ -73,6 +72,9 @@ export const firebaseService = {
   },
   adddbDoc: (ref: CollectionReference<any>, data: any) => {
     return addDoc(ref, data);
+  },
+  deletedbDoc: (ref: DocumentReference<unknown>) => {
+    return deleteDoc(ref);
   },
   updatedbDoc: (ref: DocumentReference<unknown>, data: Partial<unknown>) => {
     return updateDoc(ref, data);

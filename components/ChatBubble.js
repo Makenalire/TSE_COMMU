@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const ChatBubble = ({ msg, time, date, isSender, isNewDay }) => {
   if (msg === "") {

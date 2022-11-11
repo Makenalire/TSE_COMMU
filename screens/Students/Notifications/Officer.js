@@ -1,5 +1,5 @@
 import { where } from "firebase/firestore";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   ImageBackground,
   View,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { firebaseService } from "../../../services/chatDB";
+import { firebaseService } from "../../../services/ChatDB";
 import ChatView from "../../../components/ChatView";
 
 const image = require("../../../assets/Background.jpg");
