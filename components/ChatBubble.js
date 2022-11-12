@@ -31,7 +31,7 @@ const ChatBubble = ({ msg, time, date, isSender, isNewDay }) => {
             </View>
             <View style={styles.iconViewRight}>
               <Image
-                source={require("../assets/notif_boxitem_icon.png")}
+                source={require("../assets/Problem/chat/profile_sender.png")}
                 style={styles.icon}
               />
             </View>
@@ -40,7 +40,7 @@ const ChatBubble = ({ msg, time, date, isSender, isNewDay }) => {
           <>
             <View style={styles.iconViewLeft}>
               <Image
-                source={require("../assets/notif_boxitem_icon.png")}
+                source={require("../assets/Problem/chat/profile_reader.png")}
                 style={styles.icon}
               />
             </View>

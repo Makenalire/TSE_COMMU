@@ -175,7 +175,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
         />
         <TouchableOpacity onPress={handleSend} style={styles.sendMsgButton}>
           <Image
-            source={require("../assets/notif_boxitem_icon.png")}
+            source={require("../assets/Problem/chat/send_icon.png")}
             style={styles.sendMsgImg}
           />
         </TouchableOpacity>

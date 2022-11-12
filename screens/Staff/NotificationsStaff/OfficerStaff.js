@@ -48,7 +48,7 @@ export default function Officer() {
           style: "cancel",
         },
         {
-          text: "OK",
+          text: "Delete",
           onPress: async () => {
             await firebaseService.deletedbDoc(
               firebaseService.docData(firebaseService.db, "chats", uid)
@@ -66,7 +66,9 @@ export default function Officer() {
               });
           },
         },
-      ]
+      ], {
+        cancelable: true
+      }
     );
 
   const chatView = async (uid) => {

@@ -20,7 +20,7 @@ const ChatList = ({ title, detail, onClickFunction, onDelFunction }) => {
           onPress={onDelFunction}
         >
           <Image
-            source={require("../assets/notif_boxitem_icon.png")}
+            source={require("../assets/Problem/chat/delete_icon.png")}
             style={styles.icon}
           ></Image>
         </TouchableOpacity>
@@ -57,11 +57,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
+    alignSelf: 'center'
   },
   icon: {
     resizeMode: "contain",
     width: 50,
-    height: 50,
+    height: 33,
   },
 });
 
