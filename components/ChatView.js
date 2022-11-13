@@ -226,7 +226,7 @@ const timeFormat = (date = new Date()) => {
   const hours = timeNow.getHours();
   const minutes = timeNow.getMinutes();
   const strTime =
-    (hours >= 12 ? hours - 12 : hours > 9 ? hours : "0" + hours) +
+  (hours >= 12 ? hours - 12 > 9 ? hours - 12 : "0" + (hours - 12) : hours > 9 ? hours : "0" + hours) +
     ":" +
     (minutes > 9 ? minutes : "0" + minutes) +
     (hours >= 12 ? " PM" : " AM");

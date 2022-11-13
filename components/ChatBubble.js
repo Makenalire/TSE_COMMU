@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingHorizontal: 12,
     paddingVertical: 3,
-    borderRadius: 3,
+    borderRadius: 12,
     borderColor: "#000000",
     borderWidth: 1,
     backgroundColor: "#66FF99",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     borderWidth: 1,
     backgroundColor: "#ECECEC",
-    borderRadius: 3,
+    borderRadius: 12,
   },
   messageText: {
     fontSize: 18,
