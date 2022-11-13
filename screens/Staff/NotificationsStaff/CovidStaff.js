@@ -4,84 +4,84 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
+  Image,
   FlatList,
+  ScrollView
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
+import {collection, getDocs, getDocsFromCache} from 'firebase/firestore'
+import { db } from "../../../services/firebaseCovid";
+
 
 const image = require("../../../assets/Background.jpg");
 const metier = ["1", "2", "summer"];
 const course = ["SF341", "SF333", "SF327"];
 
 export default function Petition() {
-  const [items, setItems] = useState([
-    { id: 1,
-    subject: "Drop",
-    term: "1", course: "SF327",
-    des: "xxxxxxxxxxx" },
-
-    { id: 2,
-     subject: "FF",
-     term: "2",
-     course: "SF222",
-     des: "YYYYYY" },
-
-    { id: 3,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-
-    { id: 4,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-
-    { id: 5,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-  ]);
+  const [infoDB,setinfoDB] = useState([]);
 
   const addItem = (item) => {
     setItems((prevItems) => {
       return [{ id, subject, term, course, des }, ...prevItems];
     });
   };
+  //Receive data from database START
+  useEffect(() => {7
+    getInfo()
+  }, [])
+
+  useEffect(() => {
+    console.log(infoDB)
+  }, [infoDB])
+
+  function getInfo() {
+    const CovidInfo = collection(db,'covid')
+    getDocs(CovidInfo).then(response => {
+        const info = response.docs.map(doc => ({
+          data: doc.data(),
+          id: doc.id,
+        }))
+
+        setinfoDB(info)
+    }).catch(error => {
+        console.log(error.message)
+    })
+  }
+  //Receive data from database END
 
   const navigation = useNavigation();
   return (
     <View style={styles.view}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <ScrollView>
         <Text style={styles.textPet}>COVID</Text>
-        <FlatList
-          data={items}
-          renderItem={({ item }) => (
-            <View style={styles.boxin}>
+          {infoDB.map(infoName =>(
+            <View style={styles.boxin} key = {infoName.id}>
               <Text style={styles.pettext}>
-                <Text>Subject </Text>
-                {item.subject}
+                <Text>Name: </Text>
+                {infoName.data.Name}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Term </Text>
-                {item.term}
+                <Text>Student ID: </Text>
+                {infoName.data.StudentID}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Course code </Text>
-                {item.course}
+                <Text>Tel: </Text>
+                {infoName.data.Tel}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Description </Text>
-                {item.des}
+                <Text>Address: </Text>
+                {infoName.data.Address}
               </Text>
             </View>
-          )}
-          ListFooterComponent={() => (
-            <Text style={{ marginBottom:80 }}></Text>
-          )}
-        />
+          ))}
+        </ScrollView>
+        <TouchableOpacity
+          style={{ alignSelf: "flex-end", marginRight: 10 }}
+          onPress={() => navigation.navigate("Problem")}
+        ></TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     top: 50,
     width: 178,
     height: 26,
-    fontFamily: 'AbhayaLibre-Medium',
+    fontFamily: "AbhayaLibre-Medium",
     fontSize: 20,
     fontWeight: "400",
     fontStyle: "normal",
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     top: 70,
     marginTop: 30,
     width: 294,
-    height: 189,
+    paddingBottom: 20,
     backgroundColor: "#FDEED2",
     borderRadius: 10,
   },

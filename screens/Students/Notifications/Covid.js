@@ -1,12 +1,30 @@
-import React from "react";
-import { ImageBackground, View, Text, StyleSheet, Button} from "react-native";
+import React, { useState } from "react";
+import { ImageBackground, View, Text, StyleSheet, TouchableOpacity,Button} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
-
+import {addDoc,collection} from 'firebase/firestore'
+import { db } from "../../../services/firebaseCovid";
 
 const image = require('../../../assets/Background.jpg')
 
 export default function Covid() {
+    const [textName,setTextName] = useState('');
+    const [textID,setTextID] = useState('');
+    const [textContactNum,setTextContactNum] = useState('');
+    const [textAddr,setTextAddr] = useState('');
+    
+    function handlerSubmit() {
+        if (textName === '') {
+            return
+        }
+        const CovidInfo = collection(db, 'covid')
+        addDoc(CovidInfo,{Name:textName,Address:textAddr,StudentID:textID,Tel:textContactNum}).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error.message)
+        })  
+    alert("")      
+    }
     return (
         <View style={styles.view}>
             <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -34,6 +52,8 @@ export default function Covid() {
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
+                        onChangeText={(textName) => setTextName(textName)}
+                        value={textName}
                     />
                 </View>
                 <Text style={styles.textHead}>
@@ -51,6 +71,8 @@ export default function Covid() {
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
+                        onChangeText={(textID) => setTextID(textID)}
+                        value={textID}
                     />
                 </View>
                 <Text style={styles.textHead}>
@@ -58,16 +80,17 @@ export default function Covid() {
                 </Text>
                 <View style={styles.textInput}>
                     <MaterialCommunityIcons 
-                        style={styles.icon}
-                        name={'phone-outline'}
+                        
                         size={20}
                         color='lightgrey'
                     />
                     <TextInput 
-                        placeholder='number'
+                        placeholder='Number'
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
+                        onChangeText={(textContactNum) => setTextContactNum(textContactNum)}
+                        value={textContactNum}
                     />
                 </View>
                 <Text style={styles.textHead}>
@@ -81,12 +104,17 @@ export default function Covid() {
                         color='lightgrey'
                     />
                     <TextInput 
-                        placeholder='address'
+                        placeholder='ADDRESS'
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
+                        onChangeText={(textAddr) => setTextAddr(textAddr)}
+                        value={textAddr}
                     />
                 </View>
+                <Text style={styles.textHead}>
+                    TEST RESULT
+                </Text>
                 <Text style={styles.textCovid}>
                     
                 </Text>
@@ -98,7 +126,7 @@ export default function Covid() {
                     />
                 </View>
                 <View style={styles.underRight}>
-                    <Button 
+                    <Button  onPress={() => handlerSubmit()}
                         color='#7ECC49'
                         title="SUBMIT"
                     />
@@ -107,7 +135,7 @@ export default function Covid() {
         </View>
     )
 }
-
+// alert(textName+textID+textContactNum+textAddr)
 const styles = StyleSheet.create({
     view: {
         flex: 1,
@@ -120,16 +148,14 @@ const styles = StyleSheet.create({
         color: '#8b0000', 
         alignSelf: 'flex-start',
         marginLeft: 20,
-        fontSize: 14,
-        fontFamily: 'AbhayaLibre-Medium',
+        fontSize: 14
     },
     textHelp: {
         color: 'black', 
         alignSelf: 'flex-start',
         fontSize: 20,
         marginTop: 40,
-        marginLeft: 20,
-        fontFamily: 'AbhayaLibre-Medium',
+        marginLeft: 20
     },
     textInput: {
         alignSelf: 'center',
@@ -140,7 +166,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         height: 45,
-        width: '90%',
+        width: '90%'
     },
     username: {
         fontSize: 15,
@@ -161,13 +187,14 @@ const styles = StyleSheet.create({
         width: 118,
         height: 40,
         marginLeft: 20,
+        
+        
     },
     underRight: {
         width: 100,
         height: 50,
-        top: 10,
-        alignSelf: 'flex-end',
-        marginRight: 20
+        marginLeft: 270,
+        top: 10
     },
     
     
