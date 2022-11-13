@@ -6,13 +6,14 @@ import {
   Text,
   StyleSheet,
 } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { firebaseService } from "../../../services/ChatDB";
 import ChatView from "../../../components/ChatView";
 
 const image = require("../../../assets/Background.jpg");
 
 export default function Officer() {
+  const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const allChats = useRef();
   const chatMessages = useRef();
@@ -70,7 +71,8 @@ export default function Officer() {
               msgData={chatMessages.current}
               reader={user}
               msgCreator={msgCreator.current}
-            ></ChatView>
+              onBackFunct={() => navigation.navigate("Notification")}
+            />
           </>
         ) : (
           <View>

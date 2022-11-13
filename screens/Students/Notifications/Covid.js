@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ImageBackground, View, Text, StyleSheet, TouchableOpacity,Button} from "react-native";
+import React from "react";
+import { ImageBackground, View, Text, StyleSheet, Button} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -58,12 +58,13 @@ export default function Covid() {
                 </Text>
                 <View style={styles.textInput}>
                     <MaterialCommunityIcons 
-                        
+                        style={styles.icon}
+                        name={'phone-outline'}
                         size={20}
                         color='lightgrey'
                     />
                     <TextInput 
-                        placeholder='Number'
+                        placeholder='number'
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
@@ -80,15 +81,12 @@ export default function Covid() {
                         color='lightgrey'
                     />
                     <TextInput 
-                        placeholder='ADDRESS'
+                        placeholder='address'
                         placeholderTextColor={'lightgrey'}
                         paddingLeft={10}   
                         style={styles.username}
                     />
                 </View>
-                <Text style={styles.textHead}>
-                    TEST RESULT
-                </Text>
                 <Text style={styles.textCovid}>
                     
                 </Text>
@@ -122,14 +120,16 @@ const styles = StyleSheet.create({
         color: '#8b0000', 
         alignSelf: 'flex-start',
         marginLeft: 20,
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'AbhayaLibre-Medium',
     },
     textHelp: {
         color: 'black', 
         alignSelf: 'flex-start',
         fontSize: 20,
         marginTop: 40,
-        marginLeft: 20
+        marginLeft: 20,
+        fontFamily: 'AbhayaLibre-Medium',
     },
     textInput: {
         alignSelf: 'center',
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         height: 45,
-        width: '90%'
+        width: '90%',
     },
     username: {
         fontSize: 15,
@@ -161,14 +161,13 @@ const styles = StyleSheet.create({
         width: 118,
         height: 40,
         marginLeft: 20,
-        
-        
     },
     underRight: {
         width: 100,
         height: 50,
-        marginLeft: 270,
-        top: 10
+        top: 10,
+        alignSelf: 'flex-end',
+        marginRight: 20
     },
     
     

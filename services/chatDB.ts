@@ -38,12 +38,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let app;
-if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig, "chatDB");
-} else {
-  app = getApp();
-}
+const app = initializeApp(firebaseConfig, "chatDB");
 
 export const firebaseService = {
   db: getFirestore(app),

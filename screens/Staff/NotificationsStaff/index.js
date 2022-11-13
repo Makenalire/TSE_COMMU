@@ -1,5 +1,3 @@
-import { Agenda } from 'react-native-calendars';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, ImageBackground, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -35,7 +33,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontSize: 20,
     marginTop: 40,
-    marginLeft: 20
+    marginLeft: 20,
+    fontFamily: 'AbhayaLibre-Medium',
   },
   viewButton: {
     alignSelf: 'center'

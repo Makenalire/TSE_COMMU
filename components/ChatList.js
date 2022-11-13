@@ -48,10 +48,11 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: 'AbhayaLibre-Bold',
   },
   detailText: {
     fontSize: 14,
+    fontFamily: 'AbhayaLibre-Medium',
   },
   iconView: {
     flex: 1,

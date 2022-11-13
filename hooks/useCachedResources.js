@@ -16,6 +16,9 @@ export default function useCachedResources() {
         await Font.loadAsync({
           ...FontAwesome.font,
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'AbhayaLibre-Medium': require('../assets/fonts/AbhayaLibre-Medium.ttf'),
+          'AbhayaLibre-Bold': require('../assets/fonts/AbhayaLibre-Bold.ttf'),
+          'AbhayaLibre-Regular': require('../assets/fonts/AbhayaLibre-Regular.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

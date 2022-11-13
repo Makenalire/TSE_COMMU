@@ -4,8 +4,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Image,
   FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -80,11 +78,10 @@ export default function Petition() {
               </Text>
             </View>
           )}
+          ListFooterComponent={() => (
+            <Text style={{ marginBottom:80 }}></Text>
+          )}
         />
-        <TouchableOpacity
-          style={{ alignSelf: "flex-end", marginRight: 10 }}
-          onPress={() => navigation.navigate("Problem")}
-        ></TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
     top: 50,
     width: 178,
     height: 26,
-    fontFamily: "Abhaya Libre Medium",
+    fontFamily: 'AbhayaLibre-Medium',
     fontSize: 20,
     fontWeight: "400",
     fontStyle: "normal",

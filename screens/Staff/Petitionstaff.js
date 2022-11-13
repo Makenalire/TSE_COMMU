@@ -1,61 +1,41 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   ImageBackground,
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Image,
   FlatList,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { TextInput } from "react-native-gesture-handler";
-import SelectDropdown from "react-native-select-dropdown";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from "../../services/firebaseDb";
 
 const image = require("../../assets/Background.jpg");
 const metier = ["1", "2", "summer"];
 const course = ["SF341", "SF333", "SF327"];
 
 export default function Petition() {
-  const [items, setItems] = useState([
-    { id: 1,
-    subject: "Drop",
-    term: "1", course: "SF327",
-    des: "xxxxxxxxxxx" },
+  const [items, setItems] = useState([]);
 
-    { id: 2,
-     subject: "FF",
-     term: "2",
-     course: "SF222",
-     des: "YYYYYY" },
+  useEffect(() => {
+    getPetition();
+    console.log(items)
+  }, [])
 
-    { id: 3,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-
-    { id: 4,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-
-    { id: 5,
-      subject: "AAA",
-      term: "2",
-      course: "CN101",
-      des: "ZZZZZZZZ" },
-  ]);
-
-  const addItem = (item) => {
-    setItems((prevItems) => {
-      return [{ id, subject, term, course, des }, ...prevItems];
-    });
-  };
+  function getPetition() {
+    const petCollRef = collection(db, "PETITION");
+    getDocs(petCollRef)
+      .then((response) => {
+        const pets = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }))
+        setItems(pets)
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
 
   const navigation = useNavigation();
   return (
@@ -67,28 +47,27 @@ export default function Petition() {
           renderItem={({ item }) => (
             <View style={styles.boxin}>
               <Text style={styles.pettext}>
-                <Text>Subject </Text>
-                {item.subject}
+                <Text>Subject: </Text>
+                {item.data.subject}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Term </Text>
-                {item.term}
+                <Text>Term: </Text>
+                {item.data.term}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Course code </Text>
-                {item.course}
+                <Text>Course code: </Text>
+                {item.data.course}
               </Text>
               <Text style={styles.pettext}>
-                <Text>Description </Text>
-                {item.des}
+                <Text>Description: </Text>
+                {item.data.des}
               </Text>
             </View>
           )}
+          ListFooterComponent={() => (
+            <Text style={{ marginBottom:80 }}></Text>
+          )}
         />
-        <TouchableOpacity
-          style={{ alignSelf: "flex-end", marginRight: 10 }}
-          onPress={() => navigation.navigate("Problem")}
-        ></TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -107,7 +86,7 @@ const styles = StyleSheet.create({
     top: 50,
     width: 178,
     height: 26,
-    fontFamily: "Abhaya Libre Medium",
+    fontFamily: 'AbhayaLibre-Medium',
     fontSize: 20,
     fontWeight: "400",
     fontStyle: "normal",

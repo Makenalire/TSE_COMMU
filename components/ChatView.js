@@ -12,7 +12,7 @@ import ChatBubble from "./ChatBubble";
 import { firebaseService } from "../services/ChatDB";
 import { arrayUnion } from "firebase/firestore";
 
-const ChatView = ({ msgData, reader, msgCreator }) => {
+const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {
   if (typeof msgData === "undefined") {
     return (
       <View>
@@ -36,7 +36,7 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      newRef.current.scrollToEnd({animated: false});
+      newRef.current.scrollToEnd({ animated: false });
     });
   }, []);
 
@@ -131,6 +131,12 @@ const ChatView = ({ msgData, reader, msgCreator }) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={onBackFunct}
+        style={styles.buttonBackChatList}
+      >
+        <Text style={styles.buttonBackChatListText}>{"< Back"}</Text>
+      </TouchableOpacity>
       <ScrollView
         ref={(ref) => {
           newRef.current = ref;
@@ -258,6 +264,14 @@ const styles = StyleSheet.create({
     flex: 6,
     justifyContent: "flex-start",
     fontSize: 20,
+    fontFamily: "AbhayaLibre-Regular",
+  },
+  buttonBackChatList: {
+    paddingStart: 10,
+  },
+  buttonBackChatListText: {
+    fontSize: 20,
+    fontFamily: "AbhayaLibre-Bold",
   },
 });
 

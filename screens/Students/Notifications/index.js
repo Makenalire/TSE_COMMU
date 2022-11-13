@@ -1,5 +1,3 @@
-import { Agenda } from 'react-native-calendars';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, ImageBackground, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,11 +13,11 @@ export default function Notification() {
           <View style={styles.viewButton}>
             <TouchableOpacity onPress={() => navigation.navigate('Covid')} >
               <Image source={require('../../../assets/Problem/Covid.png')} style={styles.btn} />
-              <Text style={{alignSelf: 'center'}}>COVID-19</Text>
+              <Text style={{alignSelf: 'center', fontFamily: 'AbhayaLibre-Medium',}}>COVID-19</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Officer')} >
               <Image source={require('../../../assets/Problem/Officer.png')} style={styles.btn} />
-              <Text style={{alignSelf: 'center', marginBottom: 100}}>CONTACT STAFF</Text>
+              <Text style={{alignSelf: 'center', marginBottom: 100, fontFamily: 'AbhayaLibre-Medium',}}>CONTACT STAFF</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -35,7 +33,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontSize: 20,
     marginTop: 40,
-    marginLeft: 20
+    marginLeft: 20,
+    fontFamily: 'AbhayaLibre-Medium'
   },
   viewButton: {
     alignSelf: 'center'

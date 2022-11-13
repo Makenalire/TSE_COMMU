@@ -1,78 +1,136 @@
 import React from "react";
-import { View, ImageBackground, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { View, ImageBackground, StyleSheet, TouchableOpacity, FlatList, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
 
 const image = require('../../assets/Background.jpg')
+
 export default function Room() {
+  const { room } = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
     const navigation = useNavigation();
+    const roomData = [
+      {name: 'PRIVATE ROOM 200', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 201', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 300', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 301', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 400', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 401', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 500', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 501', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 600', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 601', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 700', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM 701', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+    ]
+
     return (
-        <View style={styles.view}>
-            <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-                <Text style={styles.textRoom}>
-                    EXPLORE SPACE
-                </Text>
+      <View style={styles.view}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <Text style={styles.textPet}>EXPLORE SPACE</Text>
+            <FlatList 
+              data={roomData}
+              numColumns={2}
+              renderItem= {({ item }) => (             
+                  <TouchableOpacity style={styles.boxin1} onPress={() => navigation.navigate('RoomTime')}>
+                      <View style={styles.fab}>
+                        <Text style={styles.fabIcon}>BOOK NOW</Text>
+                      </View>
+                      <Text style={styles.text1}>{item.name}</Text>
+                      <Text style={styles.text2}>{item.type}</Text>
+                      <Text style={styles.text3}>{item.cap}</Text>
+                      <Text style={styles.text3}>{item.size}</Text>
+                  </TouchableOpacity>
+                // <View style={styles.boxin1}>
+                //   <Text style={styles.text1}>{item.name}</Text>
+                //   <Text style={styles.text2}>{item.type}</Text>
+                //   <Text style={styles.text3}>ตึกวิศวกรรมศาสตร์</Text>
+                //   <Text style={styles.text3}>{item.cap}</Text>
+                //   <Text style={styles.text3}>{item.size}</Text>
+                // </View>
+              )}
+              ListFooterComponent={() => (
+                <Text style={{ marginBottom:80 }}></Text>
+              )}
+            />
             </ImageBackground>
-        </View>
-    )
-}
+          </View>
+      )}
 
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-    },
-    image: {
-        flex: 1,
-    },
-    text: {
-        color: 'black', 
-        alignSelf: 'center',
-        fontSize: 30
-    },
-    bottomView: {
-        flex: 1,
-        width: '100%',
-        height: 43,
-        backgroundColor: '#FFBD59',
-        position: 'absolute',
-        bottom: 0,
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',
-    },
-    btnRoom: {
-    height: 26.04,
-    width: 25,
-    alignSelf: 'center',
-    top: 7
-
-    },
-    btnPetition: {
-    height: 26.48,
-    width: 24,
-    alignSelf: 'center',
-    top: 7
-    },
-    btnCalendar: {
-    height: 54,
-    width: 54,
-    alignSelf: 'center',
-    bottom: 20
-    },
-    btnNoti: {
-    height: 26,
-    width: 24,
-    alignSelf: 'center',
-    top: 7
-    },
-    btnProblem: {
-    height: 25,
-    width: 28,
-    alignSelf: 'center',
-    top: 7
-    },
-    textRoom: {
-        alignSelf: 'flex-start',
-        marginTop: 40,
-        marginLeft: 20,
-        fontSize: 20,
-    }
+  fab: {
+      alignSelf: 'center',
+      top: 15,
+      width: 90,
+      height: 23,
+      backgroundColor: '#efddc6',
+      borderRadius: 9,
+      position: "absolute"
+  },
+  fabIcon: {
+      alignSelf: 'center',
+      top: 2,
+      fontSize: 13,
+      color: '#6b6b6b'
+  },
+  view: {
+      flex: 1
+  },
+  image: {
+      flex: 1,
+  },
+  text1: {
+      left: 10,
+      top: 45,
+      color: 'white', 
+      fontSize: 13
+  },
+  text2: {
+      left: 10,
+      top: 48,
+      color: '#F1ADAD', 
+      fontSize: 10
+  },
+  text3: {
+      left: 10,
+      top: 63,
+      color: 'white', 
+      fontSize: 13
+  },
+  text4: {
+      left: 10,
+      top: 64,
+      color: 'white', 
+      fontSize: 13
+  },
+  textPet: {
+      position: "absolute",
+      left: 31,
+      top: 50,
+      width: 178,
+      height: 26,
+      fontFamily: 'AbhayaLibre-Medium',
+      fontSize: 20,
+      fontWeight: "400",
+      fontStyle: "normal",
+      lineHeight: 20,
+      color: "#100F0F",
+  },
+  btnRoom: {
+      height: 26.04,
+      width: 25,
+      alignSelf: 'center',
+      top: 7
+  },
+  boxin1: {
+      width: 140,
+      height: 140,
+      backgroundColor: "#6b6b6b",
+      borderRadius: 10,
+      marginRight: 20,
+      marginBottom: -10,
+      left: 30, 
+      top: 70, 
+      marginTop: 30
+  }
 })

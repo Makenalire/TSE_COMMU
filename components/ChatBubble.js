@@ -94,13 +94,15 @@ const styles = StyleSheet.create({
   },
   messageText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: 'AbhayaLibre-Bold',
   },
   timeText: {
     fontSize: 14,
+    fontFamily: 'AbhayaLibre-Regular',
   },
   dateText: {
     fontSize: 16,
+    fontFamily: 'AbhayaLibre-Regular',
     marginHorizontal: 10,
     alignSelf: "center",
     paddingTop: 10,
