@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ImageBackground, View, Text, StyleSheet, TouchableOpacity,Button} from "react-native";
+import { ImageBackground, View, Text, StyleSheet, Image,Button} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import {addDoc,collection} from 'firebase/firestore'
 import { db } from "../../../services/firebaseCovid";
-
+import * as ImagePicker from 'expo-image-picker'
 const image = require('../../../assets/Background.jpg')
 
 export default function Covid() {
@@ -13,6 +13,17 @@ export default function Covid() {
     const [textContactNum,setTextContactNum] = useState('');
     const [textAddr,setTextAddr] = useState('');
     
+    const [image,setImage] = useState(null);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes : ImagePicker.MediaTypeOptions.Images,
+            allowsEditing : true
+        })
+        if(!result.cancelled){
+            setImage(result.uri)
+        }
+    }
     function handlerSubmit() {
         if (textName === '') {
             return
@@ -25,6 +36,8 @@ export default function Covid() {
         })  
     alert("")      
     }
+
+
     return (
         <View style={styles.view}>
             <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -122,8 +135,11 @@ export default function Covid() {
                     <Button 
                         color='#14AAF5'
                         title="Select IMAGE"
-                        
+                        onPress={pickImage}
                     />
+                    {Image && <Image source ={{uri:image}} style={{width: 100,height:100,left:10,top:20}}/>}
+
+                   
                 </View>
                 <View style={styles.underRight}>
                     <Button  onPress={() => handlerSubmit()}
