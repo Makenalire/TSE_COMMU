@@ -1,28 +1,37 @@
-import React from "react";
-import { View, ImageBackground, StyleSheet, TouchableOpacity, FlatList, Text } from 'react-native';
+import React, { useEffect } from "react";
+import { View, ImageBackground, StyleSheet, TouchableOpacity, Image, FlatList, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { useFonts } from "expo-font";
 import { useSelector, useDispatch } from 'react-redux';
+import { setRoom } from '../../redux/action';
 
 const image = require('../../assets/Background.jpg')
 
 export default function Room() {
-  const { room } = useSelector(state => state.userReducer);
+  const { room, roomTime, roomDate } = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
     const navigation = useNavigation();
     const roomData = [
-      {name: 'PRIVATE ROOM 200', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 201', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 300', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 301', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 400', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 401', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 500', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 501', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 600', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 601', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 700', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
-      {name: 'PRIVATE ROOM 701', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '200', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '201', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '300', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '301', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '400', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '401', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '500', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '501', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '600', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '601', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '700', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
+      {name: 'PRIVATE ROOM ', id: '701', type: 'ROOM TYPE PRIVATE', cap: 'CAPACITY', size: '4-6 PERSONS'},
     ]
+
+    useEffect(() => {
+      console.log(room)
+      console.log(roomTime)
+      console.log(roomDate)
+    })
 
     return (
       <View style={styles.view}>
@@ -32,11 +41,11 @@ export default function Room() {
               data={roomData}
               numColumns={2}
               renderItem= {({ item }) => (             
-                  <TouchableOpacity style={styles.boxin1} onPress={() => navigation.navigate('RoomTime')}>
+                  <TouchableOpacity style={styles.boxin1} onPress={() => navigation.navigate('RoomTime', dispatch(setRoom(item.id)))}>
                       <View style={styles.fab}>
                         <Text style={styles.fabIcon}>BOOK NOW</Text>
                       </View>
-                      <Text style={styles.text1}>{item.name}</Text>
+                      <Text style={styles.text1}>{item.name + item.id}</Text>
                       <Text style={styles.text2}>{item.type}</Text>
                       <Text style={styles.text3}>{item.cap}</Text>
                       <Text style={styles.text3}>{item.size}</Text>

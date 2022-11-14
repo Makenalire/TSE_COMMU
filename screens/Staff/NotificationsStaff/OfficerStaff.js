@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { firebaseService } from "../../../services/ChatDB";
+import firebaseService from "../../../services/chatDatabase";
 import ChatList from "../../../components/ChatList";
 import ChatView from "../../../components/ChatView";
 

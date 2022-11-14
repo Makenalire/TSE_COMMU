@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import ChatBubble from "./ChatBubble";
-import { firebaseService } from "../services/ChatDB";
+import firebaseService from "../services/chatDatabase";
 import { arrayUnion } from "firebase/firestore";
 
 const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {

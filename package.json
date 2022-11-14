@@ -24,6 +24,7 @@
     "expo-asset": "~8.6.1",
     "expo-constants": "~13.2.4",
     "expo-font": "~10.2.1",
+    "expo-image-picker": "~13.3.1",
     "expo-linking": "~3.2.2",
     "expo-notifications": "~0.16.1",
     "expo-permissions": "^13.2.0",
@@ -47,8 +48,7 @@
     "react-native-web": "~0.18.7",
     "react-redux": "^8.0.4",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1",
-    "expo-image-picker": "~13.3.1"
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

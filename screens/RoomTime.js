@@ -3,7 +3,7 @@ import {Button, View, TouchableOpacity, Text, StyleSheet, Alert} from 'react-nat
 import {Agenda} from 'react-native-calendars';
 import {Card} from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
-import { setRoom } from '../redux/action';
+import { setRoom, setRoomDate, setRoomTime } from '../redux/action';
 import { useNavigation } from '@react-navigation/native';
 
 const timeToString = (time) => {
@@ -59,7 +59,8 @@ const Schedule = () => {
             for (let j = 0; j < numItems; ++j) {
               DateLists.map((product) => {
                 items[strTime].push({
-                  name: product.event,
+                  time: product.event,
+                  date: strTime
                 })
               } 
               )
@@ -78,7 +79,7 @@ const Schedule = () => {
 
   const renderItem = (item) => {
     return (
-      <TouchableOpacity style={{marginRight: 10, marginTop: 17 ,top: 12}} onPress={() => navigation.navigate("Room")}>
+      <TouchableOpacity style={{marginRight: 10, marginTop: 17 ,top: 12}} onPress={() => navigation.navigate("Room", dispatch(setRoomTime(item.time)), dispatch(setRoomDate(item.date)))}>
         <Card>
           <Card.Content>
             <View
@@ -87,7 +88,7 @@ const Schedule = () => {
                 justifyContent: 'space-between',
                 alignSelf: 'center',
               }}>
-              <Text>{item.name}</Text>
+              <Text>{item.time}</Text>
             </View>
           </Card.Content>
         </Card>
