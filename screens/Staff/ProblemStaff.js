@@ -51,7 +51,7 @@ export default function Petition() {
           <Text style={styles.text}>QUESTION</Text>
           <View style={styles.textInput}>
               <TextInput
-                  placeholder="Insert QUIESTION"
+                  placeholder="Insert QUESTION"
                   placeholderTextColor={"lightgrey"}
                   paddingLeft={10}
                   style={styles.subject}

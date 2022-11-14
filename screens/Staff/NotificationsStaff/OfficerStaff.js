@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    paddingVertical: 8,
     color: "black",
     textAlign: "center",
     fontSize: 35,
