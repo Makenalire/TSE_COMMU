@@ -164,14 +164,16 @@ const styles = StyleSheet.create({
         color: '#8b0000', 
         alignSelf: 'flex-start',
         marginLeft: 20,
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'AbhayaLibre-Medium'
     },
     textHelp: {
         color: 'black', 
         alignSelf: 'flex-start',
         fontSize: 20,
         marginTop: 40,
-        marginLeft: 20
+        marginLeft: 20,
+        fontFamily: 'AbhayaLibre-Medium'
     },
     textInput: {
         alignSelf: 'center',
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
     username: {
         fontSize: 15,
         width:'80%',
-        left: -2
+        left: -2,
     },
     icon: {
         alignSelf: 'center',
@@ -197,21 +199,19 @@ const styles = StyleSheet.create({
         color: '#000000', 
         alignSelf: 'flex-start',
         marginLeft: 20,
-        fontSize: 14
+        fontSize: 16,
+        fontFamily: 'AbhayaLibre-Medium'
     },
     underLeft: {
         width: 118,
         height: 40,
-        marginLeft: 20,
-        
-        
+        marginLeft: 20,      
     },
     underRight: {
         width: 100,
         height: 50,
-        marginLeft: 270,
-        top: 10
-    },
-    
-    
+        top: 10,
+        alignSelf: 'flex-end',
+        marginRight: 20
+    }, 
 })

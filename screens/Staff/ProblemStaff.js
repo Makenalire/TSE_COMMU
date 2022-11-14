@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 31,
     marginTop: 40,
+    fontFamily: 'AbhayaLibre-Medium',
   },
   textInput: {
     alignSelf: 'center',
@@ -107,7 +108,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   subject: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
+    fontFamily: 'AbhayaLibre-Medium', 
   },
   textFaq: {
     position: "absolute",
