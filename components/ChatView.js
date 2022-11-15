@@ -9,8 +9,9 @@ import {
   View,
 } from "react-native";
 import ChatBubble from "./ChatBubble";
-import firebaseService from "../services/chatDatabase";
+import { firebaseService } from "../services/chatDatabase";
 import { arrayUnion } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {
   if (typeof msgData === "undefined") {
@@ -27,6 +28,7 @@ const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {
   const [msgList, setMsgList] = useState(msgData);
   const [message, setMessage] = useState("");
   const msgIndex = useRef(msgData.length);
+  const { userData } = useSelector(state => state.userReducer);
   const newDay = useRef(new Date());
   const newRef = useRef();
   const creator = useRef(msgCreator);
@@ -94,7 +96,7 @@ const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {
         {
           recentmsg: message,
           uid: creator.current,
-          username: "Nahida",
+          username: userData.displayName,
         }
       );
     } else {

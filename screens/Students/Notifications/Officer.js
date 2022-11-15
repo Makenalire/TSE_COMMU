@@ -9,6 +9,7 @@ import {
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { firebaseService } from "../../../services/chatDatabase";
 import ChatView from "../../../components/ChatView";
+import { useSelector } from "react-redux";
 
 const image = require("../../../assets/Background.jpg");
 
@@ -18,8 +19,8 @@ export default function Officer() {
   const allChats = useRef();
   const chatMessages = useRef();
   const msgCreator = useRef();
-  const { uid } = useSelector(state => state.userReducer);
-  const user = uid;
+  const { userData } = useSelector(state => state.userReducer);
+  const user = userData.uid;
 
   useFocusEffect(
     useCallback(() => {

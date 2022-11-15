@@ -9,16 +9,19 @@ const ChatList = ({ title, detail, onClickFunction, onDelFunction }) => {
     <TouchableOpacity style={styles.container} onPress={onClickFunction}>
       <View style={styles.textView}>
         <View>
-          <Text style={styles.titleText}>{title}</Text>
+          {title === null ? (
+            <Text style={styles.titleNullText}>{"Unknown"}</Text>
+          ) : (
+            <Text style={styles.titleText}>{title}</Text>
+          )}
+
           <Text style={styles.detailText} numberOfLines={1}>
             {detail}
           </Text>
         </View>
       </View>
       <View style={styles.iconView}>
-        <TouchableOpacity
-          onPress={onDelFunction}
-        >
+        <TouchableOpacity onPress={onDelFunction}>
           <Image
             source={require("../assets/Problem/chat/delete_icon.png")}
             style={styles.icon}
@@ -48,17 +51,22 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
-    fontFamily: 'AbhayaLibre-Bold',
+    fontFamily: "AbhayaLibre-Bold",
+  },
+  titleNullText: {
+    fontSize: 18,
+    fontFamily: "AbhayaLibre-Bold",
+    color: "#808080"
   },
   detailText: {
     fontSize: 14,
-    fontFamily: 'AbhayaLibre-Medium',
+    fontFamily: "AbhayaLibre-Medium",
   },
   iconView: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   icon: {
     resizeMode: "contain",

@@ -34,11 +34,11 @@ export const setRoomDate = roomDate => dispatch => {
     });
 };
 
-export const SET_UID = "SET_UID";
+export const SET_USER = "SET_USER";
 
-export const setUid = uid => dispatch => {
+export const setUserData = uid => dispatch => {
     dispatch({
-        type: SET_UID,
+        type: SET_USER,
         payload: uid,
     });
 };
