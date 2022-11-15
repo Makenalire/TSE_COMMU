@@ -18,7 +18,8 @@ export default function Officer() {
   const allChats = useRef();
   const chatMessages = useRef();
   const msgCreator = useRef();
-  const user = "78910";
+  const { uid } = useSelector(state => state.userReducer);
+  const user = uid;
 
   useFocusEffect(
     useCallback(() => {

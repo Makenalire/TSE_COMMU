@@ -1,10 +1,11 @@
-import { SET_JOB, SET_ROOM, SET_ROOM_TIME, SET_ROOM_DATE } from "./action";
+import { SET_JOB, SET_ROOM, SET_ROOM_TIME, SET_ROOM_DATE, SET_UID } from "./action";
 
 const initialState = {
     job: '',
     room: '',
     roomTime: '',
-    roomDate: ''
+    roomDate: '',
+    uid: ''
 }
 
 function userReducer(state=initialState, action){
@@ -17,6 +18,8 @@ function userReducer(state=initialState, action){
             return {...state, roomTime: action.payload};
         case SET_ROOM_DATE:
             return {...state, roomDate: action.payload};
+        case SET_UID:
+            return {...state, uid: action.payload};
         default:
             return state;
     }
