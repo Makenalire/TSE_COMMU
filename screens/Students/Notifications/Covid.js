@@ -34,7 +34,7 @@ export default function Covid() {
         }).catch(error => {
             console.log(error.message)
         })  
-    alert("")      
+    alert("Complete!")      
     }
 
 
