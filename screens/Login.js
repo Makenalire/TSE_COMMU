@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseConfig } from '../Config';
 import { initializeApp } from '@firebase/app';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getFirestore, collection, query, where, getDocs } from '@firebase/firestore';
 import { setUid } from '../redux/action';
 

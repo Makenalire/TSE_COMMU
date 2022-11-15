@@ -9,6 +9,7 @@ import {
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { firebaseService } from "../../../services/chatDatabase";
 import ChatView from "../../../components/ChatView";
+import { useSelector } from 'react-redux';
 
 const image = require("../../../assets/Background.jpg");
 
