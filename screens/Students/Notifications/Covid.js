@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, View, Text, StyleSheet, Image,Button} from "react-native";
+import { ImageBackground, View, Text, StyleSheet, Image,Button, ScrollView} from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import {addDoc,collection} from 'firebase/firestore'
@@ -39,7 +39,7 @@ export default function Covid() {
 
 
     return (
-        <View style={styles.view}>
+        <ScrollView style={styles.view}>
             <ImageBackground source={image} resizeMode="cover" style={styles.image}>
                 <Text style={styles.textHelp}>
                   HELP
@@ -148,7 +148,7 @@ export default function Covid() {
                     />
                 </View>
             </ImageBackground>
-        </View>
+        </ScrollView>
     )
 }
 // alert(textName+textID+textContactNum+textAddr)
@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
         height: 50,
         top: 10,
         alignSelf: 'flex-end',
-        marginRight: 20
+        marginRight: 20,
+        marginBottom: 30
     }, 
 })

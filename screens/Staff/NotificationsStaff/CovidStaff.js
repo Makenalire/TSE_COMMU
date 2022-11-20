@@ -55,8 +55,8 @@ export default function Petition() {
   return (
     <View style={styles.view}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <Text style={styles.textPet}>COVID</Text>
         <ScrollView>
-        <Text style={styles.textPet}>COVID</Text>
           {infoDB.map(infoName =>(
             <View style={styles.boxin} key = {infoName.id}>
               <Text style={styles.pettext}>
@@ -77,11 +77,15 @@ export default function Petition() {
               </Text>
             </View>
           ))}
+        
+        
         </ScrollView>
         <TouchableOpacity
-          style={{ alignSelf: "flex-end", marginRight: 10 }}
-          onPress={() => navigation.navigate("Problem")}
-        ></TouchableOpacity>
+                  onPress={() => navigation.navigate("NotificationStaff")}
+                  style={styles.buttonBack}
+                >
+                  <Text style={styles.buttonBackText}>BACK</Text>
+                </TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -95,12 +99,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textPet: {
-    position: "absolute",
-    left: 31,
-    top: 50,
-    width: 178,
-    height: 26,
-    fontFamily: "AbhayaLibre-Medium",
+    paddingStart: 31,
+    paddingTop: 50,
+    fontFamily: 'AbhayaLibre-Medium',
     fontSize: 20,
     fontWeight: "400",
     fontStyle: "normal",
@@ -109,20 +110,17 @@ const styles = StyleSheet.create({
   },
 
   boxin: {
-    left: 45,
-    top: 70,
+    paddingVertical: 10,
+    alignSelf: 'center',
     marginTop: 30,
     width: 294,
-    paddingBottom: 20,
     backgroundColor: "#FDEED2",
     borderRadius: 10,
   },
 
   pettext: {
-    left: 10,
-    top: 10,
-    width: 500,
-    height: 26,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     fontSize: 16,
   },
 
@@ -191,5 +189,20 @@ const styles = StyleSheet.create({
     width: 28,
     alignSelf: "center",
     top: 7,
+  },
+  buttonBack: {
+    marginRight: 10,
+    alignSelf: "center",
+    backgroundColor: "#FFBD59",
+    padding: 5,
+    paddingHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 30,
+    borderRadius: 10,
+  },
+  buttonBackText: {
+    fontSize: 20,
+    color: "#FFFFFF",
+    fontFamily: "AbhayaLibre-Bold",
   },
 });
