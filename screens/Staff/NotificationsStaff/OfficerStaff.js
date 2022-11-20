@@ -44,10 +44,11 @@ export default function Officer() {
       });
   };
 
-  const createTwoButtonAlert = (name, uid) =>
+  const createTwoButtonAlert = (name, uid) => {
+    const username = name === null? "Unknown": name;
     Alert.alert(
       "Delete Confirmation",
-      `Chat history will be deleted. This will also affect on ${name}'s chat too.`,
+      `Chat history will be deleted. This will also affect on ${username}'s chat too.`,
       [
         {
           text: "Cancel",
@@ -63,7 +64,7 @@ export default function Officer() {
             await firebaseService.deletedbDoc(
               firebaseService.docData(firebaseService.db, "messages", uid)
             );
-            refreshScreen()
+            refreshScreen();
           },
         },
       ],
@@ -71,6 +72,7 @@ export default function Officer() {
         cancelable: true,
       }
     );
+  };
 
   const chatView = async (uid) => {
     const msgRef = firebaseService.docCollection(
@@ -124,7 +126,9 @@ export default function Officer() {
                     onPress={() => navigation.navigate("NotificationStaff")}
                     style={styles.buttonBackChatList}
                   >
-                    <Text style={styles.buttonBackChatListText}>{"< Back"}</Text>
+                    <Text style={styles.buttonBackChatListText}>
+                      {"< Back"}
+                    </Text>
                   </TouchableOpacity>
                   <Text style={styles.text}>Chats</Text>
                   <View style={{ flex: 1 }}></View>
@@ -231,6 +235,6 @@ const styles = StyleSheet.create({
   buttonBackChatListText: {
     fontSize: 20,
     fontFamily: "AbhayaLibre-Bold",
-    textAlign:'left'
+    textAlign: "left",
   },
 });
