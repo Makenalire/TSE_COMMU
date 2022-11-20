@@ -81,11 +81,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textPet: {
-    position: "absolute",
-    left: 31,
-    top: 50,
-    width: 178,
-    height: 26,
+    paddingStart: 31,
+    paddingTop: 50,
     fontFamily: 'AbhayaLibre-Medium',
     fontSize: 20,
     fontWeight: "400",
@@ -95,20 +92,17 @@ const styles = StyleSheet.create({
   },
 
   boxin: {
-    left: 45,
-    top: 70,
+    paddingVertical: 10,
+    alignSelf: 'center',
     marginTop: 30,
     width: 294,
-    height: 189,
     backgroundColor: "#FDEED2",
     borderRadius: 10,
   },
 
   pettext: {
-    left: 10,
-    top: 10,
-    width: 500,
-    height: 26,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     fontSize: 16,
   },
 
