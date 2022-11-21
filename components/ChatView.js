@@ -70,6 +70,9 @@ const ChatView = ({ msgData, reader, msgCreator, onBackFunct }) => {
   };
 
   const addMsgToDB = async () => {
+    if (message.trim() === "") {
+      return;
+    };
     if (typeof creator.current === "undefined") {
       creator.current = reader;
       const msgRef = firebaseService.docData(
